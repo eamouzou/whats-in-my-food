@@ -1,21 +1,22 @@
-<h1>Total Number of Matching Foods: </h1>
+<h1>Total Number of Matching Foods: <%= @full_response[:totalHits] %></h1>
 
-<h2>Top 10 Foods Containing ____</h2>
-<section class='food'>
-  <h3>Input Name Here</h3>
-    <section class='GTIN/UPC code'>
-      <h4>GTIN/UPC code: </h4>
-    </section>
+<h2>Top 10 Foods Containing <%= @full_response[:foodSearchCriteria][:ingredients].titleize %></h2>
+<% @foods.each do |food| %>
+  <ul class='food'>
+    <li class='code'>
+      <h4>GTIN/UPC code: <%= food[:gtinUpc] %></h4>
+    </li>
 
-    <section class='description'>
-      <h4>description: </h4>
-    </section>
+    <li class='description'>
+      <h4>description: <%= food[:description] %></h4>
+    </li>
 
-    <section class='Brand Owner'>
-      <h4>Brand Owner: </h4>
-    </section>
+    <li class='owner'>
+      <h4>Brand Owner: <%= food[:brandOwner] %></h4>
+    </li>
 
-    <section class='ingredients'>
-      <h4>ingredients: </h4>
-    </section>
-</section>
+    <li class='ingredients'>
+      <h4>ingredients: <%= food[:ingredients] %></h4>
+    </li>
+  </ul>
+<% end %>
