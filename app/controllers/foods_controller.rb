@@ -13,7 +13,8 @@ class FoodsController < ApplicationController
 
     response = conn.get("/fdc/v1/search?api_key=#{api_key}&ingredients=#{ingredient_for_url}")
     json = JSON.parse(response.body, symbolize_names: true)
-    @foods = json[:foods]
+    @full_response = json
+    @foods = json[:foods].take(10)
   end
 
 end
